@@ -8,40 +8,32 @@ exports.list = async (req, res) => {
   });
 };
 exports.create = async (req, res) => {
-  let existedUser = await User.findOne({ email: req.body.email });
+  let existedUser = await User.findOne({ username: req.body.username });
+  let existedPhoneNo = await User.findOne({ phone: req.body.phone });
   if (existedUser) {
     return res.send("User existed!");
   }
+  if (existedPhoneNo) {
+    return res.send("Phone number existed!");
+  }
+
   const salt = await bcrypt.genSalt(10);
   const hash = await bcrypt.hash(req.body.password, salt);
   //save to db
   const newUser = new User({
-    name: req.body.name,
-    email: req.body.email,
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    phone: req.body.phone,
+    username: req.body.username,
     passwordHash: hash,
   });
   try {
     await User.create(newUser);
-    return res.send("done");
+    return res.redirect("./list");
   } catch (err) {
     return res.send(err);
   }
 };
 exports.add = async (req, res) => {
   res.render("add");
-};
-exports.authentication = async (req, res) => {
-  let existedUser = await User.findOne({ email: req.body.email });
-  if (!existedUser) {
-    return res.send("User not existed!");
-  }
-  let isUserAuthenticated = await bcrypt.compare(
-    req.body.password,
-    existedUser.passwordHash
-  );
-  if (isUserAuthenticated) {
-    return res.send("User is authenticated");
-  } else {
-    return res.status(401).send("User credential is not correct!");
-  }
 };

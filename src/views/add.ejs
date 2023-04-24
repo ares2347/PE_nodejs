@@ -27,10 +27,73 @@
         </div>
       </div>
     </nav>
-    <div class="container pt-4">
-      <div class="row">
-        <div class="col">
-          <h2>Add new user</h2>
+    <div class="container">
+      <div class="row justify-content-center mt-5">
+        <div class="col-lg-8 col-md-8 col-sm-8">
+          <div class="card shadow">
+            <div class="card-title text-center border-bottom">
+              <h2 class="p-3">Add New User</h2>
+            </div>
+            <div class="card-body">
+              <form method="post" action="./create">
+                <div class="mb-4">
+                  <label for="firstname" class="form-label">First Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="firstname"
+                    name="firstname"
+                    required
+                  />
+                </div>
+                <div class="mb-4">
+                  <label for="lastname" class="form-label">Last Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="lastname"
+                    name="lastname"
+                    required
+                  />
+                </div>
+                <div class="mb-4">
+                  <label for="phone" class="form-label">Phone No.</label>
+                  <input
+                    type="tel"
+                    class="form-control"
+                    id="phone"
+                    name="phone"
+                    required
+                  />
+                </div>
+                <div class="mb-4">
+                  <label for="username" class="form-label">User Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="username"
+                    name="username"
+                    required
+                  />
+                </div>
+                <div class="mb-4">
+                  <label for="password" class="form-label">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    required
+                  />
+                </div>
+                <div class="d-grid">
+                  <button type="submit" class="btn text-light btn-dark">
+                    Add New User
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>
